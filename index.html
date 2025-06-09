@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darío Barber - El Juego</title>
+    <!-- Enlace al archivo CSS para aplicar todos los estilos visuales y la responsividad -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fuente Inter de Google Fonts para una tipografía moderna y legible en toda la interfaz -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Pantalla de Inicio: visible al inicio del juego, con título y botón de Jugar -->
+        <div id="start-screen" class="game-screen active">
+            <h1 class="title">Darío Barber</h1>
+            <p class="subtitle">¡Ayuda a Darío a recolectar sus herramientas!</p>
+            <button id="play-button" class="btn play-btn">Jugar</button>
+            <p class="daily-check-message" id="daily-check-message"></p>
+        </div>
+
+        <!-- Pantalla de Juego Principal: aquí se desarrolla la acción del juego -->
+        <div id="game-screen" class="game-screen">
+            <canvas id="gameCanvas"></canvas>
+            <div class="game-ui">
+                <div class="score-display ui-box">Puntos: <span id="current-score">0</span></div>
+                <div class="timer-display ui-box">Tiempo: <span id="time-left">60s</span></div>
+                <div class="high-score-display ui-box">Récord: <span id="high-score">0</span></div>
+            </div>
+            <!-- Botón de Pausa: ubicado estratégicamente para no interferir con la jugabilidad -->
+            <button id="pause-button" class="btn pause-btn">Pausa</button>
+        </div>
+
+        <!-- Pantalla de Pausa: se superpone al juego cuando se activa la pausa -->
+        <div id="pause-overlay" class="game-screen overlay">
+            <h2 class="title">PAUSA</h2>
+            <button id="resume-button" class="btn">Continuar</button>
+        </div>
+
+        <!-- Pantalla de Victoria: se muestra al ganar el juego -->
+        <div id="win-screen" class="game-screen overlay">
+            <h2 class="title">¡Victoria!</h2>
+            <p>¡Has recolectado muchas herramientas!</p>
+            <p>Tu puntuación final: <span id="final-win-score"></span></p>
+            <h3>Reclama tu premio:</h3>
+            <form id="win-form" class="game-form">
+                <div class="form-group">
+                    <label for="win-nombre">Nombre:</label>
+                    <input type="text" id="win-nombre" name="nombre" required placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label for="win-apellido">Apellido:</label>
+                    <input type="text" id="win-apellido" name="apellido" required placeholder="Tu apellido">
+                </div>
+                <div class="form-group">
+                    <label for="win-fechaNacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="win-fechaNacimiento" name="fechaNacimiento" required>
+                </div>
+                <div class="form-group">
+                    <label for="win-dni">DNI:</label>
+                    <input type="number" id="win-dni" name="dni" required placeholder="Tu DNI">
+                </div>
+                <div class="form-group">
+                    <label for="win-telefono">Teléfono:</label>
+                    <input type="tel" id="win-telefono" name="telefono" required placeholder="Tu teléfono">
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="win-terms" required>
+                    <label for="win-terms">Acepto los <a href="terminos.html" target="_blank">términos y condiciones</a></label>
+                </div>
+                <button type="submit" class="btn submit-btn">Enviar</button>
+            </form>
+            <p class="form-message" id="win-form-message"></p>
+        </div>
+
+        <!-- Pantalla de Derrota: se muestra al perder el juego -->
+        <div id="lose-screen" class="game-screen overlay">
+            <h2 class="title">¡Game Over!</h2>
+            <p>Se acabó el tiempo o caíste. ¡Mejor suerte la próxima!</p>
+            <p>Tu puntuación final: <span id="final-lose-score"></span></p>
+            <h3>Vuelve a participar:</h3>
+            <form id="lose-form" class="game-form">
+                <div class="form-group">
+                    <label for="lose-nombre">Nombre:</label>
+                    <input type="text" id="lose-nombre" name="nombre" required placeholder="Tu nombre">
+                </div>
+                <div class="form-group">
+                    <label for="lose-apellido">Apellido:</label>
+                    <input type="text" id="lose-apellido" name="apellido" required placeholder="Tu apellido">
+                </div>
+                <div class="form-group">
+                    <label for="lose-fechaNacimiento">Fecha de Nacimiento:</label>
+                    <input type="date" id="lose-fechaNacimiento" name="fechaNacimiento" required>
+                </div>
+                <div class="form-group">
+                    <label for="lose-dni">DNI:</label>
+                    <input type="number" id="lose-dni" name="dni" required placeholder="Tu DNI">
+                </div>
+                <div class="form-group">
+                    <label for="lose-telefono">Teléfono:</label>
+                    <input type="tel" id="lose-telefono" name="telefono" required placeholder="Tu teléfono">
+                </div>
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="lose-terms" required>
+                    <label for="lose-terms">Acepto los <a href="terminos.html" target="_blank">términos y condiciones</a></label>
+                </div>
+                <button type="submit" class="btn submit-btn">Enviar</button>
+            </form>
+            <p class="form-message" id="lose-form-message"></p>
+        </div>
+    </div>
+
+    <!-- Enlace al archivo JavaScript: debe ir al final del body para asegurar que todo el DOM esté cargado antes de que el script intente interactuar con él -->
+    <script src="game.js"></script>
+</body>
+</html>
